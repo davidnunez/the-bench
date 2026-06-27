@@ -74,7 +74,9 @@ completed: 2026-06-27
 2. **Task 2: PULSES.md + phase gate** — `dee8b19` (docs: PULSES.md with Pulse 001 entry)
 3. **Task 3: Human verify live repo** — PENDING (checkpoint:human-verify, blocking gate; not self-approved)
 
-**Post-checkpoint fix:** `d58d98b` (fix: XML-escape SVG text + fail build on malformed SVG — see Deviations below)
+**Post-checkpoint fixes:**
+- `d58d98b` (fix: XML-escape SVG text + fail build on malformed SVG — see Deviations below)
+- `1f821ba` (fix: wrap swatch descriptions to card width + overflow guard — see Deviations below)
 
 ## Files Created/Modified
 
@@ -101,10 +103,21 @@ completed: 2026-06-27
 - **Verification:** `make validate && make labels` green; SVG parses via both `xml.dom.minidom` and `xml.etree.ElementTree`; line 7 now shows `&amp;`; 14/14 tests pass; guard confirmed to hard-fail on a deliberately malformed SVG.
 - **Committed in:** `d58d98b`
 
+**2. [Rule 1 - Bug] Swatch description text overflowed the card and clipped**
+- **Found during:** Task 3 human-verify (second visual defect surfaced by the reviewer)
+- **Issue:** Each swatch `meaning` was emitted as a single non-wrapping `<text>` line with no fit-to-width. Longer meanings ran past the card's right edge and clipped — visible on probe ("...where the dep[th]"), broadcast ("...(persimm[on])"), and schematic ("...composing compo[nent]"). At IBM Plex Mono 10px the monospace advance is 0.6em = 6px/char, so the ~198px inner width holds ~33 chars; probe (44), broadcast (42), schematic (40), signal (35), and pulse (34) all exceeded it.
+- **Fix:**
+  - Word-wrap each meaning to the card inner width. `chars_per_line` is **derived** from the monospace metric (`inner_width / (0.6 * font_size)` = 198/6 = 33), not a hardcoded number. Wrapped lines emit as `<tspan x="10" dy="...">` children of the meaning `<text>`; breaks are word-boundary only (longest word "built-to-travel"=15 fits).
+  - Bumped `SWATCH_H` 58→64 so two 10px lines clear the bottom edge; `SVG_H` is now computed from the actual row count (canvas 480×428) so it always fits. 2-column grid, colors, and spacing otherwise unchanged.
+  - Added structural overflow guard `assert_swatch_fits()` (mirrors the XML guard): hard-fails the build if any line exceeds the inner width or the block exceeds card height. Added test **T11** enforcing the same on both axes.
+- **Files modified:** scripts/generate-labels.py, scripts/test_generate_labels.py, design-system/labels/the-bench-labels.svg (regenerated)
+- **Verification:** All 8 meanings now wrap within 33 chars / ≤2 lines (probe→["hands-on exploration — where the","depth lives"], broadcast→["durable, built-to-travel share","(persimmon)"], schematic→["speculative outline composing","components"]); `make validate && make labels` green; XML guard still passes; 15/15 tests pass; overflow guard confirmed to trip on an over-wide line (240px > 198px).
+- **Committed in:** `1f821ba`
+
 ---
 
-**Total deviations:** 1 auto-fixed (1 Rule 1 bug)
-**Impact on plan:** Fix was required for correctness — the SVG is a core Phase-1 deliverable and must render. Also closed the validation hole (invalid SVG is now a hard build failure). No scope creep. Task 3 remains PENDING for re-verification.
+**Total deviations:** 2 auto-fixed (2 Rule 1 bugs, both caught at the human-verify gate)
+**Impact on plan:** Both fixes were required for correctness — the label SVG is a core Phase-1 deliverable and must render legibly. Each fix also closed a validation hole (malformed XML and text overflow are now hard build failures with regression tests), so neither can silently regress. No scope creep. Task 3 remains PENDING for re-verification.
 
 ## Checkpoint: Task 3 PENDING
 
@@ -113,7 +126,7 @@ completed: 2026-06-27
 
 1. Open https://github.com/davidnunez/the-bench — confirm About panel shows description, 8 topics, davidnunez.com link
 2. Read README.md on GitHub — confirm before→alive thesis, Board back-link, David's voice (not guru-fluff)
-3. Open `design-system/labels/the-bench-labels.svg` in browser — confirm wordmark (aubergine on cream) + 8 ink-legend swatches with meanings (SVG now parses as valid XML — the bare-`&` bug is fixed in `d58d98b`)
+3. Open `design-system/labels/the-bench-labels.svg` in browser — confirm wordmark (aubergine on cream) + 8 ink-legend swatches with meanings (SVG now parses as valid XML — bare-`&` fixed in `d58d98b`; descriptions now wrap inside the cards with no clipping — fixed in `1f821ba`)
 4. Confirm `decisions/` lists ADR-001..004 and PULSES.md has Pulse 001 entry
 
 **Resume signal:** Type "approved" or describe what to fix.
@@ -142,9 +155,11 @@ None — PULSES.md is complete; Pulse 001 references live artifacts.
 - [x] PULSES.md created at /Users/davidnunez/src/the-bench/PULSES.md
 - [x] Commit dee8b19 exists in git log (Task 2)
 - [x] Commit d58d98b exists in git log (SVG XML-escape fix)
+- [x] Commit 1f821ba exists in git log (swatch description wrap fix)
 - [x] Repo is public at https://github.com/davidnunez/the-bench
 - [x] make validate && make labels both green
 - [x] SVG parses as well-formed XML (xml.dom.minidom + ElementTree)
+- [x] No swatch description overflows its card (T11 + generator guard)
 
 ## Self-Check: PASSED
 
