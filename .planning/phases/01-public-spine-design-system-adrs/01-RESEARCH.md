@@ -680,17 +680,19 @@ if __name__ == '__main__':
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Pulse logging mechanism (SPINE-03)**
    - What we know: D-22 says "logged in-repo"
    - What's unclear: Whether a `PULSES.md` file, a `pulses/` directory with one file per pulse, or a section in README is preferred
    - Recommendation: Start with a `PULSES.md` at repo root (flat, no subdirectory overhead) with one entry per phase pulse. Simple, discoverable, on-brand for a legible artifact.
+   - **RESOLVED:** `PULSES.md` at repo root — one entry per phase pulse. Locked in plan 01-04/Task 2.
 
 2. **`decisions/` directory name**
    - What we know: Both ARCHITECTURE.md research and CONTEXT.md use `decisions/` for ADR files
    - What's unclear: Some projects use `adr/`, `doc/adr/`, or `docs/decisions/`
    - Recommendation: Use `decisions/` (already in the architecture research); keeps it adjacent to the project vocab (ADR = architectural *decision* record)
+   - **RESOLVED:** `decisions/` (per ARCHITECTURE.md and CONTEXT.md). Used consistently across plan 01-03.
 
 ---
 
