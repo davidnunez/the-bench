@@ -19,10 +19,10 @@ Requirements for the initial release (the "Before + Spine" milestone). Each maps
 
 ### Spine (Public Artifact)
 
-- [ ] **SPINE-01**: Public README frames the probe — the before→alive thesis, environment-as-provenance, "over-engineering is the hook," the identity one-liner, and a back-link to the governing Board Signal
+- [x] **SPINE-01**: Public README frames the probe — the before→alive thesis, environment-as-provenance, "over-engineering is the hook," the identity one-liner, and a back-link to the governing Board Signal
 - [ ] **SPINE-02**: The repo ships its first public proof-of-work (a committed render) **before** the room is measured
 - [ ] **SPINE-03**: A pulse-ready proof-of-work artifact is produced and logged in-repo at the end of every phase (broadcasting itself stays out of repo)
-- [ ] **SPINE-04**: Repo carries an appropriate open LICENSE and public-facing metadata for a build-in-public project
+- [x] **SPINE-04**: Repo carries an appropriate open LICENSE and public-facing metadata for a build-in-public project
 
 ### Design System
 
@@ -112,10 +112,10 @@ Which phases cover which requirements. Updated after roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SPINE-01 | Phase 1: Public Spine + Design System + ADRs | Pending |
+| SPINE-01 | Phase 1: Public Spine + Design System + ADRs | Complete |
 | SPINE-02 | Phase 3: Furniture Primitives + First On-Brand Render | Pending |
 | SPINE-03 | Phase 1: Public Spine + Design System + ADRs | Pending |
-| SPINE-04 | Phase 1: Public Spine + Design System + ADRs | Pending |
+| SPINE-04 | Phase 1: Public Spine + Design System + ADRs | Complete |
 | DSGN-01 | Phase 1: Public Spine + Design System + ADRs | Pending |
 | DSGN-02 | Phase 3: Furniture Primitives + First On-Brand Render | Pending |
 | DSGN-03 | Phase 1: Public Spine + Design System + ADRs | Pending |

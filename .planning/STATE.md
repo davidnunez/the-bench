@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: planning
+status: executing
 stopped_at: Phase 1 context gathered
-last_updated: "2026-06-27T17:17:52.926Z"
-last_activity: 2026-06-27 — Roadmap created; 6-phase v1 "Before + Spine" milestone scoped; 19/19 requirements mapped
+last_updated: "2026-06-27T17:26:56.167Z"
+last_activity: 2026-06-27 -- Phase 01 execution started
 progress:
   total_phases: 6
   completed_phases: 0
   total_plans: 4
-  completed_plans: 0
+  completed_plans: 1
   percent: 0
 ---
 
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-27)
 
 **Core value:** A stranger encountering the public repo sees a real human turning his environment into a reproducible, expressive, lovingly over-engineered system — and wants to follow along.
-**Current focus:** Phase 1 — Public Spine + Design System + ADRs
+**Current focus:** Phase 01 — public-spine-design-system-adrs
 
 ## Current Position
 
-Phase: 1 of 6 (Public Spine + Design System + ADRs)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-06-27 — Roadmap created; 6-phase v1 "Before + Spine" milestone scoped; 19/19 requirements mapped
+Phase: 01 (public-spine-design-system-adrs) — EXECUTING
+Plan: 2 of 4
+Status: Executing Phase 01
+Last activity: 2026-06-27 -- Phase 01 execution started
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [███░░░░░░░] 25%
 
 ## Performance Metrics
 
@@ -52,6 +52,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01-public-spine-design-system-adrs P01 | 2min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -64,6 +65,9 @@ Recent decisions affecting current work:
 - Roadmap: ADR-001 (include-vs-use + `$fn` convention) and ADR-002 (doll-house scale) must be written in Phase 1 before any `.scad` file exists
 - Roadmap: Doll-house primary path is OpenSCAD-native (`linear_extrude` + `difference()` from params.scad); doratracyer/floor_plan is documented fallback
 - Roadmap: `openscad@snapshot` is mandatory — bare `openscad` cask installs deprecated 2021.01 and is incompatible with QuackWorks
+- [Phase ?]: Whole-repo MIT, maximally generous, on-brand
+- [Phase ?]: Audience finds repo when more rendered; proof-of-work is that it exists
+- [Phase ?]: Probe type = aubergine in Signal Path system; identity is definitional not preferential
 
 ### Pending Todos
 
@@ -81,6 +85,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-27T16:33:51.092Z
+Last session: 2026-06-27T17:26:56.163Z
 Stopped at: Phase 1 context gathered
 Resume file: .planning/phases/01-public-spine-design-system-adrs/01-CONTEXT.md
