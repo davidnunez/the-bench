@@ -26,9 +26,9 @@ Requirements for the initial release (the "Before + Spine" milestone). Each maps
 
 ### Design System
 
-- [ ] **DSGN-01**: In-repo design tokens encode the refreshed palette (cream `#f5efe2` / near-black `#1a1820` / terracotta `#ec6a43` / plum `#4a2a57` / magenta `#c63c82`) and type (Archivo / Newsreader / IBM Plex Mono)
+- [x] **DSGN-01**: In-repo design tokens encode the refreshed palette (cream `#f5efe2` / near-black `#1a1820` / terracotta `#ec6a43` / plum `#4a2a57` / magenta `#c63c82`) and type (Archivo / Newsreader / IBM Plex Mono)
 - [ ] **DSGN-02**: Renders apply the brand palette so even early/boring renders are on-brand and shareable
-- [ ] **DSGN-03**: Brand tokens drive printable physical signage / bin-label templates (SVG) from the same source of truth
+- [x] **DSGN-03**: Brand tokens drive printable physical signage / bin-label templates (SVG) from the same source of truth
 
 ### Space-as-Code Foundation
 
@@ -116,9 +116,9 @@ Which phases cover which requirements. Updated after roadmap creation.
 | SPINE-02 | Phase 3: Furniture Primitives + First On-Brand Render | Pending |
 | SPINE-03 | Phase 1: Public Spine + Design System + ADRs | Pending |
 | SPINE-04 | Phase 1: Public Spine + Design System + ADRs | Complete |
-| DSGN-01 | Phase 1: Public Spine + Design System + ADRs | Pending |
+| DSGN-01 | Phase 1: Public Spine + Design System + ADRs | Complete |
 | DSGN-02 | Phase 3: Furniture Primitives + First On-Brand Render | Pending |
-| DSGN-03 | Phase 1: Public Spine + Design System + ADRs | Pending |
+| DSGN-03 | Phase 1: Public Spine + Design System + ADRs | Complete |
 | CODE-01 | Phase 2: Parametric Foundation — Toolchain + Room Shell + Pipeline | Pending |
 | CODE-02 | Phase 2: Parametric Foundation — Toolchain + Room Shell + Pipeline | Pending |
 | CODE-03 | Phase 2: Parametric Foundation — Toolchain + Room Shell + Pipeline | Pending |
