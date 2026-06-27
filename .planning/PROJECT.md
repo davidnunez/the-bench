@@ -60,7 +60,7 @@ A stranger encountering the public repo sees a real human turning his environmen
 
 ## Constraints
 
-- **Tech stack**: OpenSCAD is the "space as code" engine — `brew install --cask openscad` (**not yet installed**). Optional `yamllint` for the manifest. Present: Node 22, git, python3.
+- **Tech stack**: OpenSCAD is the "space as code" engine — `brew install --cask openscad@snapshot` (**not yet installed**; the `@snapshot`/dev release is required — the bare `openscad` cask installs the deprecated 2021.01 build, which the **QuackWorks** organizer library will not run on). Plus **BOSL2** + the **QuackWorks** submodule (Gridfinity / openGrid / Underware / Neogrid). Optional `yamllint` + `check-jsonschema` for the manifest. Present: Node 22, git, python3.
 - **Brand**: palette = warm cream `#f5efe2` + near-black `#1a1820` + terracotta `#ec6a43` + plum `#4a2a57` + magenta pop `#c63c82`; type = Archivo (display) · Newsreader (serif body) · IBM Plex Mono (labels). **Supersedes** the March copper + electric-blue scheme. **No AI imagery** — authentic WIP photography only.
 - **Cadence**: at least **weekly** pulse-ready proof-of-work. Heaviness is a feature; *silence* is the failure mode.
 - **Physicality**: real-world delays (3D-print times, shipping, paint drying, physically sorting cable bins) are *legitimate* scheduling inputs — but must **not** inflate into long marination/analysis gates. Bias to rapid, prolific proof-of-work. **Not a 3-year project.**

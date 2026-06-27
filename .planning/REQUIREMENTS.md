@@ -108,17 +108,35 @@ v1 is shippable when:
 
 ## Traceability
 
-Which phases cover which requirements. Updated during roadmap creation.
+Which phases cover which requirements. Updated after roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| (populated by the roadmapper) | — | Pending |
+| SPINE-01 | Phase 1: Public Spine + Design System + ADRs | Pending |
+| SPINE-02 | Phase 3: Furniture Primitives + First On-Brand Render | Pending |
+| SPINE-03 | Phase 1: Public Spine + Design System + ADRs | Pending |
+| SPINE-04 | Phase 1: Public Spine + Design System + ADRs | Pending |
+| DSGN-01 | Phase 1: Public Spine + Design System + ADRs | Pending |
+| DSGN-02 | Phase 3: Furniture Primitives + First On-Brand Render | Pending |
+| DSGN-03 | Phase 1: Public Spine + Design System + ADRs | Pending |
+| CODE-01 | Phase 2: Parametric Foundation — Toolchain + Room Shell + Pipeline | Pending |
+| CODE-02 | Phase 2: Parametric Foundation — Toolchain + Room Shell + Pipeline | Pending |
+| CODE-03 | Phase 2: Parametric Foundation — Toolchain + Room Shell + Pipeline | Pending |
+| CODE-04 | Phase 3: Furniture Primitives + First On-Brand Render | Pending |
+| CODE-05 | Phase 2: Parametric Foundation — Toolchain + Room Shell + Pipeline | Pending |
+| CODE-06 | Phase 1: Public Spine + Design System + ADRs | Pending |
+| BFOR-01 | Phase 4: Measurement Refinement + As-Is Layout | Pending |
+| BFOR-02 | Phase 4: Measurement Refinement + As-Is Layout | Pending |
+| BFOR-03 | Phase 5: Three Modes + Equipment Manifest | Pending |
+| BFOR-04 | Phase 5: Three Modes + Equipment Manifest | Pending |
+| DOLL-01 | Phase 6: Doll-House Export + Physical Print | Pending |
+| DOLL-02 | Phase 6: Doll-House Export + Physical Print | Pending |
 
 **Coverage:**
 - v1 requirements: 19 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 19 ⚠️
+- Mapped to phases: 19 ✓
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-06-27*
-*Last updated: 2026-06-27 after initial definition*
+*Last updated: 2026-06-27 — traceability populated after roadmap creation*
