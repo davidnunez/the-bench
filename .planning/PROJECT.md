@@ -6,6 +6,10 @@ The Bench is a living, version-controlled model of my physical home office/studi
 
 The defining inversion: the **public / meta / Signal-Path layer leads; the physical build hangs off it.** The ultimate deliverable is the redesigned physical Bench; the artifact *along the way* is the documented process — **before → "alive."** The deliberate over-formalization (lines of OpenSCAD just to place a desk) is the point and the hook, not a bug.
 
+## North Star — the main event
+
+The deliverable is the **physical Bench, updated and ready for full use** — the room actually *alive* and worked in. Everything in this repo — the parametric model, the committed renders, the printed doll-house — is the **prelude, the spec, and the comms layer**: how the redesign gets designed, de-risked, and narrated *before and while* it happens. The doll-house in particular is how the change is communicated and validated; it is **not** the destination — the changed room is. And because this is a **Probe**, the path is allowed to meander: we follow signals as they surface, and the roadmap is a live model to steer by, not a fixed track to march.
+
 ## Core Value
 
 A stranger encountering the public repo sees a real human turning his environment into a reproducible, expressive, lovingly over-engineered system — and **wants to follow along.** The repo + public artifact are the spine; the office is what they model.

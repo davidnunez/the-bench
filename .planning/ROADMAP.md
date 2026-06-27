@@ -18,7 +18,11 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [ ] **Phase 3: Furniture Primitives + First On-Brand Render** - Furniture and zone modules complete the before-state model; first on-brand committed render ships before measurement
 - [ ] **Phase 4: Measurement Refinement + As-Is Layout** - Room measured exactly once; estimated params replaced with real dims; model renders the actual before-state
 - [ ] **Phase 5: Three Modes + Equipment Manifest** - Three modes annotated in model per zone; equipment manifest validated as structured data
-- [ ] **Phase 6: Doll-House Export + Physical Print** - Room model exported to STL; doll-house 3D-printed and photographed as the v1 milestone capstone pulse
+- [ ] **Phase 6: Doll-House Export + Physical Print** - Room model exported to STL; doll-house 3D-printed and photographed as the v1 capstone pulse — the prelude artifact that hands off to the v2 physical redesign, not the project's end
+
+## North Star — Next Milestone (v2, not yet scoped)
+
+**v2 "Alive" — Physical Bench Redesign** is the main event: real changes to the physical office — layout, cable management with the printed organizers, lighting, AV/streaming, the workbench. v1 "Before + Spine" produces the model and the doll-house that *spec, de-risk, and narrate* that redesign; Phase 6's printed doll-house is the **prelude artifact that hands off to v2**, not the project's end. Scope for v2 is deliberately deferred — it will be shaped from what the v1 probe surfaces (this is a Probe; meandering is the point).
 
 ## Phase Details
 
@@ -110,7 +114,7 @@ Plans:
 
 ### Phase 6: Doll-House Export + Physical Print
 
-**Goal**: The room model is exported to a printable STL via the OpenSCAD-native path, deriving directly from `params.scad`; the doll-house is 3D-printed at the scale locked in ADR-002; the physical object is photographed and committed as the v1 milestone capstone pulse
+**Goal**: The room model is exported to a printable STL via the OpenSCAD-native path, deriving directly from `params.scad`; the doll-house is 3D-printed at the scale locked in ADR-002; the physical object is photographed and committed as the v1 milestone capstone pulse — the prelude/capstone artifact that hands off to the v2 physical redesign ("Alive"), not the project's end
 **Mode:** mvp
 **Depends on**: Phase 5
 **Requirements**: DOLL-01, DOLL-02
