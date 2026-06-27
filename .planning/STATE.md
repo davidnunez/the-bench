@@ -89,7 +89,7 @@ None yet.
 
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
-| 260627-kx6 | Apply dollhouse-as-prelude goal reframe to PROJECT.md and ROADMAP.md | 2026-06-27 | 6065a5b | [260627-kx6-apply-dollhouse-as-prelude-goal-reframe-](./quick/260627-kx6-apply-dollhouse-as-prelude-goal-reframe-/) |
+| 260627-kx6 | Apply dollhouse-as-prelude goal reframe to PROJECT.md and ROADMAP.md | 2026-06-27 | 0d15bfc | [260627-kx6-apply-dollhouse-as-prelude-goal-reframe-](./quick/260627-kx6-apply-dollhouse-as-prelude-goal-reframe-/) |
 
 ## Deferred Items
 
