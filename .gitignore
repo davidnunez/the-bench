@@ -1,0 +1,20 @@
+# Python virtual environment (project uses --user pip or system tools)
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# OpenSCAD build artifacts (committed renders go in renders/, generated STLs in models/)
+# Phase 2+: renders/ and models/stl/ are committed; raw exports to scratch are ignored
+*.off
+*.amf
+
+# Editor artifacts
+*.swp
+*.swo
+.idea/
+.vscode/
