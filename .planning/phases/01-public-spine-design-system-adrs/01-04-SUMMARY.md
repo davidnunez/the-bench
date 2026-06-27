@@ -37,11 +37,12 @@ key-decisions:
   - "GitHub About: description, davidnunez.com homepage, 8 topics set via gh CLI"
   - "PULSES.md at repo root (not pulses/ subdirectory): flat, one entry per phase, discoverable"
   - "Phase-1 pulse = the live public repo itself (D-22): spine + tokens + SVG + 4 ADRs"
-  - "Task 3 (human-verify) left PENDING — checkpoint payload returned to orchestrator; not self-approved"
+  - "Task 3 (human-verify) APPROVED via orchestrator after two Rule-1 SVG fixes (XML-escape + description wrap)"
 
 patterns-established:
   - "Pulse logging: PULSES.md entry per phase; references artifacts by relative path; note that broadcasting is out-of-repo"
   - "Phase gate: make validate && make labels before marking any phase complete"
+  - "Generated artifacts get structural regression guards (well-formed XML, no text overflow) so visual defects become hard build failures"
 
 requirements-completed: [SPINE-01, SPINE-03, SPINE-04]
 
@@ -51,15 +52,15 @@ completed: 2026-06-27
 
 # Phase 1 Plan 4: Publish Repo Public + PULSES.md Summary
 
-**Live public repo at github.com/davidnunez/the-bench with build-in-public metadata; Phase-1 pulse logged in PULSES.md; phase gate green — human verification PENDING**
+**The Bench is live and public at github.com/davidnunez/the-bench with build-in-public metadata, the Phase-1 pulse logged in PULSES.md, a cleanly-rendering label SVG, and human-verify APPROVED — Phase 1 complete (4/4)**
 
 ## Performance
 
-- **Duration:** ~2 min (Tasks 1-2 only; Task 3 is checkpoint:human-verify, not self-approved)
+- **Duration:** ~2 min execution (Tasks 1-2) + 2 post-checkpoint Rule-1 fixes; human-verify approved
 - **Started:** 2026-06-27T17:46:29Z
-- **Completed (tasks 1-2):** 2026-06-27T17:48:27Z
-- **Tasks:** 2 of 3 completed (Task 3 is human-verify checkpoint — PENDING)
-- **Files modified:** 1 (PULSES.md created)
+- **Completed:** 2026-06-27 (human-verify approved via orchestrator)
+- **Tasks:** 3 of 3 completed (Task 3 = human-verify checkpoint, APPROVED)
+- **Files modified:** 5 (PULSES.md created; generate-labels.py, test_generate_labels.py, the-bench-labels.svg, Makefile modified by the two fixes)
 
 ## Accomplishments
 
@@ -72,7 +73,7 @@ completed: 2026-06-27
 
 1. **Task 1: Publish repo public + set metadata** — `538a937` (push via `gh repo create --public`; metadata set via `gh repo edit`; no new in-repo file)
 2. **Task 2: PULSES.md + phase gate** — `dee8b19` (docs: PULSES.md with Pulse 001 entry)
-3. **Task 3: Human verify live repo** — PENDING (checkpoint:human-verify, blocking gate; not self-approved)
+3. **Task 3: Human verify live repo** — APPROVED (checkpoint:human-verify; human visually confirmed About-panel metadata, README voice + Board back-link, the corrected label SVG rendering with no clipping, and decisions/ + PULSES.md)
 
 **Post-checkpoint fixes:**
 - `d58d98b` (fix: XML-escape SVG text + fail build on malformed SVG — see Deviations below)
@@ -117,19 +118,20 @@ completed: 2026-06-27
 ---
 
 **Total deviations:** 2 auto-fixed (2 Rule 1 bugs, both caught at the human-verify gate)
-**Impact on plan:** Both fixes were required for correctness — the label SVG is a core Phase-1 deliverable and must render legibly. Each fix also closed a validation hole (malformed XML and text overflow are now hard build failures with regression tests), so neither can silently regress. No scope creep. Task 3 remains PENDING for re-verification.
+**Impact on plan:** Both fixes were required for correctness — the label SVG is a core Phase-1 deliverable and must render legibly. Each fix also closed a validation hole (malformed XML and text overflow are now hard build failures with regression tests), so neither can silently regress. No scope creep.
 
-## Checkpoint: Task 3 PENDING
+## Checkpoint: Task 3 APPROVED
 
-**Type:** checkpoint:human-verify (gate="blocking")
-**What to verify:**
+**Type:** checkpoint:human-verify (gate="blocking") — **APPROVED via orchestrator**
 
-1. Open https://github.com/davidnunez/the-bench — confirm About panel shows description, 8 topics, davidnunez.com link
-2. Read README.md on GitHub — confirm before→alive thesis, Board back-link, David's voice (not guru-fluff)
-3. Open `design-system/labels/the-bench-labels.svg` in browser — confirm wordmark (aubergine on cream) + 8 ink-legend swatches with meanings (SVG now parses as valid XML — bare-`&` fixed in `d58d98b`; descriptions now wrap inside the cards with no clipping — fixed in `1f821ba`)
-4. Confirm `decisions/` lists ADR-001..004 and PULSES.md has Pulse 001 entry
+The human visually verified the live public repo and approved:
 
-**Resume signal:** Type "approved" or describe what to fix.
+1. GitHub About panel — description, 8 topics, davidnunez.com link confirmed
+2. README.md on GitHub — before→alive thesis, Board back-link (Signal → Probe → Pulse), David's voice confirmed
+3. `design-system/labels/the-bench-labels.svg` — renders cleanly as the wordmark (aubergine on cream) + 8 ink-legend swatches; valid XML (bare-`&` fixed in `d58d98b`) and descriptions wrap inside the cards with no clipping (fixed in `1f821ba`)
+4. `decisions/` lists ADR-001..004 and PULSES.md has the Pulse 001 entry
+
+**Two iterative bug fixes were made at this gate before approval** (see Deviations above): the SVG initially failed XML parsing, then descriptions clipped; both were fixed, guarded against regression, and re-verified.
 
 ## Issues Encountered
 
@@ -145,10 +147,11 @@ None — PULSES.md is complete; Pulse 001 references live artifacts.
 
 ## Next Phase Readiness
 
-- Repo is live and public; Phase 2 can link to it
+- **Phase 1 is complete (4/4 plans).** Repo is live and public; Phase 2 can link to it
 - PULSES.md establishes the pulse-logging pattern for all future phases
-- Phase gate (make validate && make labels) is green
-- Blocked on: human approval of Task 3 (checkpoint:human-verify)
+- Phase gate (make validate && make labels) is green; SVG has XML + overflow regression guards
+- No blockers — human-verify approved
+- Phase 2 inherits: ADR-001 (include/use) constrains every `.scad`; ADR-003 requires `shell.scad` as composable wall modules; `tokens.yaml` is the COLOR_* contract for `params.scad`
 
 ## Self-Check
 
@@ -165,5 +168,5 @@ None — PULSES.md is complete; Pulse 001 references live artifacts.
 
 ---
 *Phase: 01-public-spine-design-system-adrs*
-*Plan 04 tasks 1-2 complete; Task 3 (human-verify) pending*
+*Plan 04 complete — all 3 tasks done; Task 3 (human-verify) APPROVED*
 *Completed: 2026-06-27*
