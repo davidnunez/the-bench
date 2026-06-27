@@ -9,6 +9,7 @@ import sys
 import pathlib
 import importlib.util
 import subprocess
+import xml.dom.minidom
 
 
 GENERATOR = pathlib.Path("scripts/generate-labels.py")
@@ -69,6 +70,16 @@ def run_tests():
             if mode in svg:
                 failures.append(f"FAIL T8: SVG contains banned mode token '{mode}'")
 
+        # T9: SVG is well-formed XML (regression guard — bare '&' broke parsing)
+        try:
+            xml.dom.minidom.parseString(svg)
+        except Exception as exc:
+            failures.append(f"FAIL T9: SVG is not well-formed XML: {exc}")
+
+        # T10: font @import ampersands are XML-escaped (no bare '&')
+        if "&family=" in svg or "&display=" in svg:
+            failures.append("FAIL T10: SVG @import URL has a bare '&' (must be '&amp;')")
+
     # Report
     if failures:
         print("FAILED:")
@@ -76,7 +87,7 @@ def run_tests():
             print(f"  {f}")
         sys.exit(1)
     else:
-        print(f"PASSED: {len(EIGHT_TYPES)+4} checks all green")
+        print(f"PASSED: {len(EIGHT_TYPES)+6} checks all green")
         sys.exit(0)
 
 

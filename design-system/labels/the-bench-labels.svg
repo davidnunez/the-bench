@@ -4,7 +4,7 @@
 <svg xmlns="http://www.w3.org/2000/svg"
      viewBox="0 0 480 600" width="480" height="600">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@700&family=IBM+Plex+Mono:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@700&amp;family=IBM+Plex+Mono:wght@400;700&amp;display=swap');
     .wordmark     { font-family: 'Archivo', system-ui, sans-serif;
                     font-weight: 700; font-size: 34px; }
     .wordmark-sub { font-family: 'IBM Plex Mono', 'Courier New', monospace;

@@ -13,9 +13,30 @@ Security: yaml.safe_load() only — the unsafe loader is forbidden (prevents
 
 import yaml
 import pathlib
+import xml.dom.minidom
+from xml.sax.saxutils import escape as _xml_escape
 
 TOKENS_PATH = pathlib.Path("design-system/tokens.yaml")
 OUTPUT_PATH = pathlib.Path("design-system/labels/the-bench-labels.svg")
+
+# Google Fonts import. NOTE: the bare '&' separating the two `family=` params is
+# illegal in XML (SVG is XML) and breaks the parser ("EntityRef: expecting ';'").
+# It is XML-escaped to &amp; on emit; the XML parser unescapes it back to '&'
+# before the CSS @import URL is used, so the fonts still load correctly.
+FONT_IMPORT_URL = (
+    "https://fonts.googleapis.com/css2?family=Archivo:wght@700"
+    "&family=IBM+Plex+Mono:wght@400;700&display=swap"
+)
+
+
+def xesc(value):
+    """XML-escape any dynamic text/attribute content emitted into the SVG.
+
+    Escapes &, <, > (and, for attributes, the quote chars). This prevents any
+    token value containing &, <, or > — or the bare '&' in the font URL — from
+    producing malformed XML.
+    """
+    return _xml_escape(str(value), {'"': "&quot;", "'": "&apos;"})
 
 # SVG canvas dimensions
 SVG_W = 480
@@ -43,10 +64,15 @@ def load_tokens():
 
 
 def swatch(name, type_data, x, y):
-    """Render a single type swatch: bg rect + type name + meaning text."""
-    bg = type_data["bg"]
-    fg = type_data["on"]
-    meaning = type_data["meaning"]
+    """Render a single type swatch: bg rect + type name + meaning text.
+
+    All token-derived values are XML-escaped — colors flow into attributes,
+    name/meaning into text content — so no token value can break the SVG.
+    """
+    bg = xesc(type_data["bg"])
+    fg = xesc(type_data["on"])
+    meaning = xesc(type_data["meaning"])
+    name = xesc(name)
     return (
         f'  <g transform="translate({x},{y})">\n'
         f'    <rect width="{SWATCH_W}" height="{SWATCH_H}" fill="{bg}" rx="4"/>\n'
@@ -62,8 +88,9 @@ def build_svg(tokens):
     roles = tokens["roles"]
     base  = tokens["base"]
 
-    aubergine = roles["structure"]["hex"]   # probe identity = The Bench
-    cream     = base["paper"]["hex"]
+    aubergine = xesc(roles["structure"]["hex"])   # probe identity = The Bench
+    cream     = xesc(base["paper"]["hex"])
+    font_import = xesc(FONT_IMPORT_URL)            # bare '&' → '&amp;' (valid XML)
 
     # Ink-legend swatches (8 types, 2 columns)
     swatches = []
@@ -82,8 +109,7 @@ def build_svg(tokens):
 <svg xmlns="http://www.w3.org/2000/svg"
      viewBox="0 0 {SVG_W} {SVG_H}" width="{SVG_W}" height="{SVG_H}">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@700\
-&family=IBM+Plex+Mono:wght@400;700&display=swap');
+    @import url('{font_import}');
     .wordmark     {{ font-family: 'Archivo', system-ui, sans-serif;
                     font-weight: 700; font-size: 34px; }}
     .wordmark-sub {{ font-family: 'IBM Plex Mono', 'Courier New', monospace;
@@ -106,12 +132,29 @@ def build_svg(tokens):
 </svg>'''
 
 
+def assert_well_formed_xml(path):
+    """Parse the written SVG back as XML; hard-fail the build if malformed.
+
+    SVG is XML, so any unescaped '&', '<', or '>' yields an invalid file that a
+    browser refuses to render. Parsing it back here makes invalid SVG a non-zero
+    build failure instead of a silent regression caught only by a human.
+    """
+    text = pathlib.Path(path).read_text(encoding="utf-8")
+    try:
+        xml.dom.minidom.parseString(text)
+    except Exception as exc:  # xml.parsers.expat.ExpatError and friends
+        raise SystemExit(
+            f"ERROR: generated SVG is not well-formed XML ({path}): {exc}"
+        )
+
+
 def main():
     tokens = load_tokens()
     svg = build_svg(tokens)
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(svg, encoding="utf-8")
-    print(f"Generated: {OUTPUT_PATH}")
+    assert_well_formed_xml(OUTPUT_PATH)
+    print(f"Generated: {OUTPUT_PATH} (well-formed XML)")
 
 
 if __name__ == "__main__":

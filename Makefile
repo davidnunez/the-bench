@@ -35,6 +35,7 @@ labels:
 	@echo "── labels: generating SVG from tokens.yaml ──────────────────────────────"
 	$(PYTHON) $(GENERATOR)
 	@test -s $(LABELS) || { echo "ERROR: $(LABELS) is empty or missing"; exit 1; }
+	@$(PYTHON) -c "import xml.dom.minidom; xml.dom.minidom.parse('$(LABELS)'); print('SVG well-formed XML: OK')"
 	@echo "── labels: PASSED — $(LABELS) generated ─────────────────────────────────"
 
 # ── renders ───────────────────────────────────────────────────────────────────
