@@ -32,7 +32,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. `design-system/tokens.yaml` encodes the full refreshed palette (cream `#f5efe2` / near-black `#1a1820` / terracotta `#ec6a43` / plum `#4a2a57` / magenta `#c63c82`) and type scale (Archivo / Newsreader / IBM Plex Mono)
   4. A printable label template SVG is committed, generated from the design tokens, demonstrating the design-system-to-physical pipeline before any `.scad` file is written
   5. `decisions/ADR-001` (include-vs-use with `$fn` convention) and `decisions/ADR-002` (doll-house print scale 1:25 vs 1:50) are committed, locking load-bearing OpenSCAD choices before a single `.scad` file is written
-**Plans**: TBD
+**Plans**: 4 plans (Wave 1: 01-01, 01-02, 01-03 parallel · Wave 2: 01-04)
+Plans:
+- [ ] 01-01-PLAN.md — Public README spine + MIT LICENSE (SPINE-01, SPINE-04)
+- [ ] 01-02-PLAN.md — Design-system token→label pipeline: tokens.yaml + generator + first SVG (DSGN-01, DSGN-03)
+- [ ] 01-03-PLAN.md — Four load-bearing ADRs (include/use+$fn, 1:25 scale, modular walls, color integrity) (CODE-06)
+- [ ] 01-04-PLAN.md — Publish public repo + metadata + Phase-1 pulse log (SPINE-01, SPINE-03, SPINE-04)
 **UI hint**: yes
 
 ### Phase 2: Parametric Foundation — Toolchain + Room Shell + Pipeline
@@ -100,7 +105,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Public Spine + Design System + ADRs | 0/TBD | Not started | - |
+| 1. Public Spine + Design System + ADRs | 0/4 | Not started | - |
 | 2. Parametric Foundation — Toolchain + Room Shell + Pipeline | 0/TBD | Not started | - |
 | 3. Furniture Primitives + First On-Brand Render | 0/TBD | Not started | - |
 | 4. Measurement Refinement + As-Is Layout | 0/TBD | Not started | - |
