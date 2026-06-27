@@ -26,7 +26,11 @@ tech-stack:
 key-files:
   created:
     - PULSES.md
-  modified: []
+  modified:
+    - scripts/generate-labels.py
+    - scripts/test_generate_labels.py
+    - design-system/labels/the-bench-labels.svg
+    - Makefile
 
 key-decisions:
   - "Repo published public on GitHub as davidnunez/the-bench (authorized by user at orchestrator checkpoint)"
@@ -70,6 +74,8 @@ completed: 2026-06-27
 2. **Task 2: PULSES.md + phase gate** — `dee8b19` (docs: PULSES.md with Pulse 001 entry)
 3. **Task 3: Human verify live repo** — PENDING (checkpoint:human-verify, blocking gate; not self-approved)
 
+**Post-checkpoint fix:** `d58d98b` (fix: XML-escape SVG text + fail build on malformed SVG — see Deviations below)
+
 ## Files Created/Modified
 
 - `PULSES.md` — In-repo pulse log; Pulse 001 entry for Phase-1 public-spine pulse; references README, tokens.yaml, the-bench-labels.svg, ADR-001..004
@@ -82,7 +88,23 @@ completed: 2026-06-27
 
 ## Deviations from Plan
 
-None — plan executed exactly as written. Task 1 had no in-repo file (metadata is remote-side); Task 2 created PULSES.md and confirmed the phase gate. Task 3 is a blocking human-verify checkpoint — not self-approved per instructions.
+### Auto-fixed Issues
+
+**1. [Rule 1 - Bug] Generated SVG was not well-formed XML (bare `&` broke browser parsing)**
+- **Found during:** Task 3 human-verify (surfaced by the human reviewer opening the SVG in a browser)
+- **Issue:** The label generator emitted the Google Fonts `@import url(...)` with bare `&` characters separating the `family=` params. SVG is XML, so a bare `&` is an illegal entity reference — the browser failed with `EntityRef: expecting ';'` at line 7, and the SVG would not render. The phase gate never checked the generated SVG was well-formed XML, so the regression went undetected.
+- **Fix:**
+  - Added a general `xesc()` XML-escape helper (`xml.sax.saxutils.escape`) applied to all emitted text/attribute content, so the font URL's `&` (and any future `&`/`<`/`>` in token values) escapes to `&amp;` etc. The XML parser unescapes `&amp;`→`&` before the CSS URL is used, so fonts still load.
+  - Added a regression guard: the generator parses the written SVG back with `xml.dom.minidom` and hard-fails (non-zero exit) if it is not well-formed. Surfaced the same check in the `make labels` target.
+  - Added tests T9 (well-formed XML) + T10 (no bare `&` in `@import`) to lock it in.
+- **Files modified:** scripts/generate-labels.py, scripts/test_generate_labels.py, design-system/labels/the-bench-labels.svg (regenerated), Makefile
+- **Verification:** `make validate && make labels` green; SVG parses via both `xml.dom.minidom` and `xml.etree.ElementTree`; line 7 now shows `&amp;`; 14/14 tests pass; guard confirmed to hard-fail on a deliberately malformed SVG.
+- **Committed in:** `d58d98b`
+
+---
+
+**Total deviations:** 1 auto-fixed (1 Rule 1 bug)
+**Impact on plan:** Fix was required for correctness — the SVG is a core Phase-1 deliverable and must render. Also closed the validation hole (invalid SVG is now a hard build failure). No scope creep. Task 3 remains PENDING for re-verification.
 
 ## Checkpoint: Task 3 PENDING
 
@@ -91,7 +113,7 @@ None — plan executed exactly as written. Task 1 had no in-repo file (metadata 
 
 1. Open https://github.com/davidnunez/the-bench — confirm About panel shows description, 8 topics, davidnunez.com link
 2. Read README.md on GitHub — confirm before→alive thesis, Board back-link, David's voice (not guru-fluff)
-3. Open `design-system/labels/the-bench-labels.svg` in browser — confirm wordmark (aubergine on cream) + 8 ink-legend swatches with meanings
+3. Open `design-system/labels/the-bench-labels.svg` in browser — confirm wordmark (aubergine on cream) + 8 ink-legend swatches with meanings (SVG now parses as valid XML — the bare-`&` bug is fixed in `d58d98b`)
 4. Confirm `decisions/` lists ADR-001..004 and PULSES.md has Pulse 001 entry
 
 **Resume signal:** Type "approved" or describe what to fix.
@@ -118,9 +140,11 @@ None — PULSES.md is complete; Pulse 001 references live artifacts.
 ## Self-Check
 
 - [x] PULSES.md created at /Users/davidnunez/src/the-bench/PULSES.md
-- [x] Commit dee8b19 exists in git log
+- [x] Commit dee8b19 exists in git log (Task 2)
+- [x] Commit d58d98b exists in git log (SVG XML-escape fix)
 - [x] Repo is public at https://github.com/davidnunez/the-bench
 - [x] make validate && make labels both green
+- [x] SVG parses as well-formed XML (xml.dom.minidom + ElementTree)
 
 ## Self-Check: PASSED
 
