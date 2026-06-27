@@ -4,13 +4,13 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Phase 1 context gathered
-last_updated: "2026-06-27T17:35:27.442Z"
+last_updated: "2026-06-27T17:41:54.772Z"
 last_activity: 2026-06-27 -- Phase 01 execution started
 progress:
   total_phases: 6
   completed_phases: 0
   total_plans: 4
-  completed_plans: 2
+  completed_plans: 3
   percent: 0
 ---
 
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-06-27)
 ## Current Position
 
 Phase: 01 (public-spine-design-system-adrs) — EXECUTING
-Plan: 3 of 4
+Plan: 4 of 4
 Status: Executing Phase 01
 Last activity: 2026-06-27 -- Phase 01 execution started
 
-Progress: [█████░░░░░] 50%
+Progress: [████████░░] 75%
 
 ## Performance Metrics
 
@@ -53,6 +53,7 @@ Progress: [█████░░░░░] 50%
 
 *Updated after each plan completion*
 | Phase 01-public-spine-design-system-adrs P01 | 2min | 2 tasks | 2 files |
+| Phase 01-public-spine-design-system-adrs P3 | 3min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -68,6 +69,10 @@ Recent decisions affecting current work:
 - [Phase ?]: Whole-repo MIT, maximally generous, on-brand
 - [Phase ?]: Audience finds repo when more rendered; proof-of-work is that it exists
 - [Phase ?]: Probe type = aubergine in Signal Path system; identity is definitional not preferential
+- [Phase 01-public-spine-design-system-adrs]: ADR-001: include <params.scad> for variables; use <...> for modules; $fn~12 dev / 64 renders; undef failure mode prevented
+- [Phase 01-public-spine-design-system-adrs]: ADR-002: doll-house print scale locked at 1:25; Bambu A1 256mm bed fits ~144x168mm footprint; walls 6mm at 1:25
+- [Phase 01-public-spine-design-system-adrs]: ADR-003: floor-base + swappable-wall architecture; shell.scad must be composable from Phase 2; joint mechanism deferred to Phase 6
+- [Phase 01-public-spine-design-system-adrs]: ADR-004: brand inks carry Signal Path type meaning always; reflect-don-t-invent; tokens.yaml is pinned snapshot; Board boundary enforced
 
 ### Pending Todos
 
@@ -85,6 +90,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-27T17:35:27.438Z
+Last session: 2026-06-27T17:41:54.769Z
 Stopped at: Phase 1 context gathered
 Resume file: .planning/phases/01-public-spine-design-system-adrs/01-CONTEXT.md

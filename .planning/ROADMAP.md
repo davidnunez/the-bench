@@ -42,7 +42,7 @@ Plans:
 
 - [x] 01-01-PLAN.md — Public README spine + MIT LICENSE (SPINE-01, SPINE-04)
 - [x] 01-02-PLAN.md — Design-system token→label pipeline: tokens.yaml + generator + first SVG (DSGN-01, DSGN-03)
-- [ ] 01-03-PLAN.md — Four load-bearing ADRs (include/use+$fn, 1:25 scale, modular walls, color integrity) (CODE-06)
+- [x] 01-03-PLAN.md — Four load-bearing ADRs (include/use+$fn, 1:25 scale, modular walls, color integrity) (CODE-06)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -130,7 +130,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Public Spine + Design System + ADRs | 2/4 | In Progress|  |
+| 1. Public Spine + Design System + ADRs | 3/4 | In Progress|  |
 | 2. Parametric Foundation — Toolchain + Room Shell + Pipeline | 0/TBD | Not started | - |
 | 3. Furniture Primitives + First On-Brand Render | 0/TBD | Not started | - |
 | 4. Measurement Refinement + As-Is Layout | 0/TBD | Not started | - |

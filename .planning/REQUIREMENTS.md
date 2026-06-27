@@ -37,7 +37,7 @@ Requirements for the initial release (the "Before + Spine" milestone). Each maps
 - [ ] **CODE-03**: Parametric room shell (walls, door, window, outlets) is modeled from `params.scad`
 - [ ] **CODE-04**: Furniture & zone primitives (standing desk, Alex units, maker bench, shelving) are modeled as reusable modules
 - [ ] **CODE-05**: A one-command render pipeline (Makefile) produces committed top-down floor-plan + perspective PNGs via the F6 (Manifold) backend
-- [ ] **CODE-06**: Architecture Decision Records lock the load-bearing early choices — `include`-vs-`use`, and the doll-house print scale (e.g. 1:25 vs 1:50)
+- [x] **CODE-06**: Architecture Decision Records lock the load-bearing early choices — `include`-vs-`use`, and the doll-house print scale (e.g. 1:25 vs 1:50)
 
 ### Before-State Model
 
@@ -124,7 +124,7 @@ Which phases cover which requirements. Updated after roadmap creation.
 | CODE-03 | Phase 2: Parametric Foundation — Toolchain + Room Shell + Pipeline | Pending |
 | CODE-04 | Phase 3: Furniture Primitives + First On-Brand Render | Pending |
 | CODE-05 | Phase 2: Parametric Foundation — Toolchain + Room Shell + Pipeline | Pending |
-| CODE-06 | Phase 1: Public Spine + Design System + ADRs | Pending |
+| CODE-06 | Phase 1: Public Spine + Design System + ADRs | Complete |
 | BFOR-01 | Phase 4: Measurement Refinement + As-Is Layout | Pending |
 | BFOR-02 | Phase 4: Measurement Refinement + As-Is Layout | Pending |
 | BFOR-03 | Phase 5: Three Modes + Equipment Manifest | Pending |
