@@ -80,6 +80,38 @@ def run_tests():
         if "&family=" in svg or "&display=" in svg:
             failures.append("FAIL T10: SVG @import URL has a bare '&' (must be '&amp;')")
 
+        # T11: no swatch description overflows its card (horizontal + vertical).
+        # Mirrors the generator's structural overflow guard: derive the budget
+        # from the monospace metric, never a hardcoded magic number.
+        try:
+            spec = importlib.util.spec_from_file_location("genlabels", str(GENERATOR))
+            gen = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(gen)
+            tokens = gen.load_tokens()
+            for name, data in tokens["types"].items():
+                lines = gen.wrap_meaning(data["meaning"], gen.MEANING_CHARS_PER_LINE)
+                for ln in lines:
+                    px = len(ln) * gen.MEANING_CHAR_ADVANCE
+                    if px > gen.MEANING_INNER_W:
+                        failures.append(
+                            f"FAIL T11: '{name}' line overflows card width — "
+                            f"{px:.1f}px > {gen.MEANING_INNER_W}px ({ln!r})"
+                        )
+                if len(lines) > gen.MEANING_MAX_LINES:
+                    failures.append(
+                        f"FAIL T11: '{name}' wraps to {len(lines)} lines "
+                        f"> {gen.MEANING_MAX_LINES} (overflows card height)"
+                    )
+                last_baseline = gen.MEANING_Y0 + (len(lines) - 1) * gen.MEANING_LINE_H
+                limit = gen.SWATCH_H - gen.SWATCH_BOTTOM_INSET
+                if last_baseline + 0.2 * gen.MEANING_FONT_SIZE > limit:
+                    failures.append(
+                        f"FAIL T11: '{name}' text exceeds card height "
+                        f"(baseline {last_baseline} > {limit})"
+                    )
+        except Exception as exc:
+            failures.append(f"FAIL T11: overflow check could not run: {exc}")
+
     # Report
     if failures:
         print("FAILED:")
@@ -87,7 +119,7 @@ def run_tests():
             print(f"  {f}")
         sys.exit(1)
     else:
-        print(f"PASSED: {len(EIGHT_TYPES)+6} checks all green")
+        print(f"PASSED: {len(EIGHT_TYPES)+7} checks all green")
         sys.exit(0)
 
 
