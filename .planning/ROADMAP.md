@@ -13,7 +13,7 @@ The Bench is a living, version-controlled model of a physical home office/studio
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Public Spine + Design System + ADRs** - Live public repo with thesis, brand tokens, label template SVG, and load-bearing ADRs — zero dependency on OpenSCAD or measuring the room
+- [x] **Phase 1: Public Spine + Design System + ADRs** - Live public repo with thesis, brand tokens, label template SVG, and load-bearing ADRs — zero dependency on OpenSCAD or measuring the room (completed 2026-06-27)
 - [ ] **Phase 2: Parametric Foundation — Toolchain + Room Shell + Pipeline** - OpenSCAD installed and pinned, `params.scad` with estimated dims, room shell renderable, Makefile pipeline produces committed PNGs
 - [ ] **Phase 3: Furniture Primitives + First On-Brand Render** - Furniture and zone modules complete the before-state model; first on-brand committed render ships before measurement
 - [ ] **Phase 4: Measurement Refinement + As-Is Layout** - Room measured exactly once; estimated params replaced with real dims; model renders the actual before-state
@@ -46,7 +46,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-04-PLAN.md — Publish public repo + metadata + Phase-1 pulse log (SPINE-01, SPINE-03, SPINE-04)
+- [x] 01-04-PLAN.md — Publish public repo + metadata + Phase-1 pulse log (SPINE-01, SPINE-03, SPINE-04)
 
 **UI hint**: yes
 
@@ -130,7 +130,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Public Spine + Design System + ADRs | 3/4 | In Progress|  |
+| 1. Public Spine + Design System + ADRs | 4/4 | Complete   | 2026-06-27 |
 | 2. Parametric Foundation — Toolchain + Room Shell + Pipeline | 0/TBD | Not started | - |
 | 3. Furniture Primitives + First On-Brand Render | 0/TBD | Not started | - |
 | 4. Measurement Refinement + As-Is Layout | 0/TBD | Not started | - |
