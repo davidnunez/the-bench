@@ -1,0 +1,107 @@
+---
+# design-system/tokens.yaml
+#
+# Pinned snapshot of the Signal Path brand system.
+# Source of truth: Board (private vault + live Ghost site).
+# Canonical URL: https://davidnunez.com/about/#signal-path
+# This repo REFLECTS the Board's color semantics — never INVENTS them.
+# Propose new colors back to the Board as a Pulse; canonize nothing here.
+
+provenance:
+  source: "https://davidnunez.com/about/#signal-path"
+  snapshot_date: "2026-06-27"
+  board_doc: "board-structure.md (private vault)"
+  note: >
+    Colors are owned upstream by the Board. This file is a pinned snapshot.
+    TBD entries are gaps pending a Board decision — do not fill them here.
+    To propose a new color, route it back to the Board as a Pulse/Component.
+
+# ── Signal Path type system ────────────────────────────────────────────────
+# Eight labels encoding the full Signal Path semantic system.
+# Each type: bg (background ink), on (foreground on that bg), meaning.
+# Places (Bench, Rack, Board) carry paper/cream — no type ink (D-10).
+types:
+  signal:
+    bg: "#c63c82"
+    "on": "#fbeaf2"
+    meaning: "a curiosity or spark worth tracking"
+  probe:
+    bg: "#4a2a57"
+    "on": "#f1eaf4"
+    meaning: "hands-on exploration — where the depth lives"
+  pulse:
+    bg: "#e59a7d"
+    "on": "#3a1306"
+    meaning: "ephemeral quick share (soft coral)"
+  broadcast:
+    bg: "#ec6a43"
+    "on": "#3a1306"
+    meaning: "durable, built-to-travel share (persimmon)"
+  module:
+    bg: "#d7a53a"
+    "on": "#3a2a06"
+    meaning: "reusable operational system"
+  cadence:
+    bg: "#8a5410"
+    "on": "#fbf2de"
+    meaning: "recurring review rhythm"
+  component:
+    bg: "#15807c"
+    "on": "#e6f2f1"
+    meaning: "distilled reusable insight"
+  schematic:
+    bg: "#2e7d52"
+    "on": "#e9f4ee"
+    meaning: "speculative outline composing components"
+
+# ── Base palette ───────────────────────────────────────────────────────────
+base:
+  paper:
+    hex: "#f5efe2"
+    role: "background / page (warm cream)"
+  ink:
+    hex: "#1a1820"
+    role: "text / structure (near-black)"
+  surface:
+    hex: "#ede7d5"
+    role: "card background / slight contrast from paper"
+
+# ── Named roles ────────────────────────────────────────────────────────────
+roles:
+  accent:
+    hex: "#ec6a43"
+    name: "persimmon"
+    note: "Primary accent; also the broadcast type color."
+  structure:
+    hex: "#4a2a57"
+    name: "aubergine"
+    note: >
+      Secondary accent; also the probe type color.
+      The Bench is a Probe — aubergine on cream is its identity ink.
+
+# ── Reserved / unbound inks ────────────────────────────────────────────────
+# Defined but not assigned to any type. Available for future Board decisions.
+reserved:
+  cobalt:
+    hex: "#2f5da8"
+    status: "unbound"
+    note: "Formerly broadcast ink; freed in the 2026 brand rework."
+  indigo:
+    hex: "#5b53b0"
+    status: "unbound"
+    note: "Available for future Board assignment."
+
+# ── Typography ─────────────────────────────────────────────────────────────
+typography:
+  display:
+    family: "Archivo"
+    weight: 700
+    role: "headings, wordmark, large type"
+  body:
+    family: "Newsreader"
+    weight: 400
+    role: "prose, body copy"
+  label:
+    family: "IBM Plex Mono"
+    weight: 400
+    role: "tags, labels, metadata, code, bin labels"
